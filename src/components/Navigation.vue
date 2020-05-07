@@ -29,7 +29,8 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: 12px;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
   -webkit-app-region: drag;
 }
 nav {

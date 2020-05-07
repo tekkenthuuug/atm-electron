@@ -15,13 +15,14 @@ protocol.registerSchemesAsPrivileged([
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 800,
-    maxWidth: 800,
-    minWidth: 800,
-    maxHeight: 600,
-    minHeight: 600,
-    height: 600,
+    width: 920,
+    maxWidth: 920,
+    minWidth: 920,
+    maxHeight: 690,
+    minHeight: 690,
+    height: 690,
     frame: false,
+    maximizable: false,
     autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true
@@ -31,7 +32,6 @@ function createWindow() {
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
-    if (!process.env.IS_TEST) win.webContents.openDevTools();
   } else {
     createProtocol("app");
     // Load the index.html when not in development

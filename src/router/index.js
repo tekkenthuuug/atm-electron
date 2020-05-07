@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import ATMHome from "../views/ATMHome.vue";
+import Home from "../views/Home.vue";
 import Pin from "../views/Pin.vue";
 
 Vue.use(VueRouter);
@@ -9,11 +9,11 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: ATMHome
+    component: Home
   },
   {
     path: "/pin",
-    name: "PIN",
+    name: "Pin",
     component: Pin
   }
 ];

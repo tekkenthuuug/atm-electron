@@ -11,14 +11,31 @@ body, html {
   padding: 0;
 }
 
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
 .column-grid2 {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr;
   align-items: center;
   height: 100%;
+  padding: 2rem 0;
 }
 
 .tc {
   text-align: center;
+}
+
+.v-flex {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem 0;
+  height: 100%;
+  width: 100%;
 }
