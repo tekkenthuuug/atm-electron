@@ -31,12 +31,18 @@
 
 <script>
 const { ipcRenderer } = require("electron");
+
 export default {
   name: "Home",
   methods: {
     chooseCard() {
       ipcRenderer.send("open-card-chooser");
     }
+  },
+  mounted() {
+    ipcRenderer.on("switch-to-pin-page", () => {
+      this.$router.push("/pin");
+    });
   }
 };
 </script>

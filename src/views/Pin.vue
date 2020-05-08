@@ -9,12 +9,15 @@
       </p>
     </div>
     <Keypads v-on:append-pin-num="appendPinNum" />
-    <button class="submit-btn">Submit</button>
+    <button class="submit-btn" @click="verifyCard">Submit</button>
   </div>
 </template>
 
 <script>
 import Keypads from "@/components/Keypads";
+import axios from "axios";
+
+import { API_BASE_URL } from "@/constants";
 
 export default {
   name: "Pin",
@@ -34,6 +37,14 @@ export default {
       }
       if (this.pinState.length < 4) {
         this.pinState += action;
+      }
+    },
+    async verifyCard() {
+      if (this.pinState.length === 4) {
+        axios.post(`${API_BASE_URL}/verifyCard`, {
+          cardNo: this.$state.cardNo,
+          pin: this.pinState
+        });
       }
     }
   }

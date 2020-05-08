@@ -1,6 +1,6 @@
 "use strict";
 
-import { app, protocol, BrowserWindow, ipcMain } from "electron";
+import { app, protocol, BrowserWindow, ipcMain, ipcRenderer } from "electron";
 import {
   createProtocol,
   installVueDevtools
@@ -116,4 +116,9 @@ if (isDevelopment) {
 
 ipcMain.on("open-card-chooser", () => {
   createCardChooserWindow();
+});
+
+ipcMain.on("card-was-set", () => {
+  cardChooserWin.close();
+  win.webContents.send("switch-to-pin-page");
 });

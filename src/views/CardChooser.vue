@@ -9,7 +9,13 @@
     />
     <div class="buttons">
       <button id="cancelBtn" @click="closeCurrentWindow">Cancel</button>
-      <button id="confirmBtn">Confirm</button>
+      <button
+        id="confirmBtn"
+        :disabled="!Boolean(selectedCardNo.length)"
+        @click="setSessionCard"
+      >
+        Confirm
+      </button>
     </div>
   </div>
 </template>
@@ -51,6 +57,9 @@ export default {
     },
     closeCurrentWindow() {
       remote.BrowserWindow.getFocusedWindow().close();
+    },
+    setSessionCard() {
+      this.$store.commit("setSessionCard", this.selectedCardNo);
     }
   }
 };
@@ -76,11 +85,16 @@ export default {
   }
 }
 #cancelBtn {
-  background-color: rgba(220, 155, 80, 0.9);
+  background-color: rgba(236, 52, 52, 0.9);
   color: rgb(240, 240, 240);
 }
 #confirmBtn {
-  background-color: rgba(200, 220, 80, 0.9);
+  $confirmBtn-color: rgba(200, 220, 80, 0.9);
+  background-color: $confirmBtn-color;
   color: rgb(35, 35, 35);
+  &:disabled {
+    cursor: default;
+    background-color: rgba($confirmBtn-color, 0.7);
+  }
 }
 </style>
