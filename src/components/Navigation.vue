@@ -9,12 +9,12 @@
 </template>
 
 <script>
-const { ipcRenderer, remote } = require("electron");
+const { remote } = require("electron");
 export default {
   name: "Navigation",
   methods: {
     closeApp: () => {
-      ipcRenderer.send("close-app");
+      remote.BrowserWindow.getFocusedWindow().close();
     },
     minimizeWindow: () => {
       remote.BrowserWindow.getFocusedWindow().minimize();

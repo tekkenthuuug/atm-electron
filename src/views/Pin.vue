@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Keypads from "../components/Keypads";
+import Keypads from "@/components/Keypads";
 
 export default {
   name: "Pin",
@@ -27,9 +27,13 @@ export default {
     };
   },
   methods: {
-    appendPinNum(num) {
+    appendPinNum(action) {
+      if (action === "C") {
+        this.pinState = "";
+        return;
+      }
       if (this.pinState.length < 4) {
-        this.pinState += num;
+        this.pinState += action;
       }
     }
   }

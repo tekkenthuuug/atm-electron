@@ -1,7 +1,7 @@
 <template>
   <div class="keypad-grid">
     <div
-      v-for="keypad in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]"
+      v-for="keypad in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 'C']"
       :key="keypad"
       @click="$emit('append-pin-num', keypad)"
     >
@@ -36,7 +36,7 @@ export default {
     }
   }
   div:last-child {
-    grid-column-start: 1;
+    grid-column-start: 2;
     grid-column-end: 4;
   }
 }
