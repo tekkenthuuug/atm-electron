@@ -118,7 +118,7 @@ ipcMain.on("open-card-chooser", () => {
   createCardChooserWindow();
 });
 
-ipcMain.on("card-was-set", () => {
+ipcMain.on("card-was-choosen", (item, cardNo, cardHolder) => {
   cardChooserWin.close();
-  win.webContents.send("switch-to-pin-page");
+  win.webContents.send("set-card", cardNo, cardHolder);
 });

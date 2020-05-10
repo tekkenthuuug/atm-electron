@@ -39,3 +39,8 @@ button {
   height: 100%;
   width: 100%;
 }
+
+.cyan-glow-onhover:hover {
+  background-color: rgba(cyan, 0.2);
+  box-shadow: 0 0 18px rgba(cyan, 0.1);
+}

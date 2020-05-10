@@ -22,7 +22,7 @@
 
 <script>
 import CreditCard from "@/components/CreditCard.vue";
-const { remote } = require("electron");
+const { remote, ipcRenderer } = require("electron");
 export default {
   name: "Cardchooser",
   components: {
@@ -48,18 +48,24 @@ export default {
     };
   },
   methods: {
-    setSelectedCard(cardNo) {
+    setSelectedCard(cardNo, cardHolder) {
       if (this.selectedCardNo === cardNo) {
         this.selectedCardNo = "";
+        this.selectedCardHolder = "";
       } else {
         this.selectedCardNo = cardNo;
+        this.selectedCardHolder = cardHolder;
       }
     },
     closeCurrentWindow() {
       remote.BrowserWindow.getFocusedWindow().close();
     },
     setSessionCard() {
-      this.$store.commit("setSessionCard", this.selectedCardNo);
+      ipcRenderer.send(
+        "card-was-choosen",
+        this.selectedCardNo,
+        this.selectedCardHolder
+      );
     }
   }
 };

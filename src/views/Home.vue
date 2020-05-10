@@ -1,12 +1,11 @@
 <template>
   <div class="column-grid2 tc">
     <div class="index__bank-info">
-      <h1>BOM</h1>
+      <BankLogo />
       <h4>Welcome to Bank of Money</h4>
     </div>
     <div class="index__guide">
       <p>Insert your card to begin</p>
-      <!-- <router-link to="/pin"> -->
       <svg
         @click="chooseCard"
         id="insertCard"
@@ -24,24 +23,28 @@
           d="m216 192c0-13.253906-10.746094-24-24-24s-24 10.746094-24 24 10.746094 24 24 24 24-10.746094 24-24zm-24 8c-4.417969 0-8-3.582031-8-8s3.582031-8 8-8 8 3.582031 8 8-3.582031 8-8 8zm0 0"
         />
       </svg>
-      <!-- </router-link> -->
     </div>
   </div>
 </template>
 
 <script>
+import BankLogo from "@/components/BankLogo.vue";
 const { ipcRenderer } = require("electron");
 
 export default {
   name: "Home",
+  components: {
+    BankLogo
+  },
   methods: {
     chooseCard() {
       ipcRenderer.send("open-card-chooser");
     }
   },
   mounted() {
-    ipcRenderer.on("switch-to-pin-page", () => {
-      this.$router.push("/pin");
+    ipcRenderer.on("set-card", (item, cardNo, cardHolder) => {
+      this.$store.commit("setSessionCard", { cardNo, cardHolder });
+      this.$router.push("/pin").catch(err => console.log(err));
     });
   }
 };
@@ -52,10 +55,6 @@ export default {
 .index {
   color: rgb(240, 240, 240);
   &__bank-info {
-    h1 {
-      font-family: "Montserrat", serif;
-      font-size: 92px;
-    }
     h4 {
       font-size: 32px;
     }

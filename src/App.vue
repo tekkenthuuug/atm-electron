@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <Navigation />
+    <TabControls />
     <router-view />
   </div>
 </template>
 
 <script>
-import Navigation from "@/components/Navigation.vue";
+import TabControls from "@/components/TabControls.vue";
 export default {
   name: "Home",
   components: {
-    Navigation
+    TabControls
   }
 };
 </script>

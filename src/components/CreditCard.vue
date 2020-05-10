@@ -1,7 +1,7 @@
 <template>
   <div
     class="credit-card"
-    @click="$emit('set-selected-card', cardInfo.id)"
+    @click="$emit('set-selected-card', cardInfo.id, cardInfo.holderName)"
     v-bind:class="{ 'is-selected': isSelected }"
   >
     <svg

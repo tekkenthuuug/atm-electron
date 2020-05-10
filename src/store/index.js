@@ -1,19 +1,28 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-const { ipcRenderer } = require("electron");
-
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {
+const getInitialState = () => {
+  return {
     cardNo: undefined,
-    cardHolder: undefined
-  },
+    cardHolder: undefined,
+    token: undefined
+  };
+};
+
+export default new Vuex.Store({
+  state: getInitialState(),
   mutations: {
-    setSessionCard(state, cardNo) {
-      state.cardNo = cardNo;
-      ipcRenderer.send("card-was-set");
+    setSessionCard(state, cardInfo) {
+      state.cardNo = cardInfo.cardNo;
+      state.cardHolder = cardInfo.cardHolder;
+    },
+    setToken(state, token) {
+      state.token = token;
+    },
+    reset(state) {
+      Object.assign(state, getInitialState());
     }
   },
   actions: {},

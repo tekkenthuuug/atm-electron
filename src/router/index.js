@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+
 import Home from "../views/Home.vue";
+import MainMenu from "../views/MainMenu.vue";
 import Pin from "../views/Pin.vue";
 import CardChooser from "../views/CardChooser.vue";
 
@@ -21,6 +23,11 @@ const routes = [
     path: "/cardchooser",
     name: "Card chooser",
     component: CardChooser
+  },
+  {
+    path: "/mainmenu",
+    name: "Main menu",
+    component: MainMenu
   }
 ];
 

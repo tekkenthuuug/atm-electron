@@ -1,17 +1,17 @@
 <template>
   <div>
     <div id="window-drag"></div>
-    <nav id="nav">
-      <span class="navBtn" id="minimize" @click="minimizeWindow">_</span>
-      <span class="navBtn" @click="closeApp">×</span>
-    </nav>
+    <div id="controls">
+      <span class="control" id="minimize" @click="minimizeWindow">_</span>
+      <span class="control" @click="closeApp">×</span>
+    </div>
   </div>
 </template>
 
 <script>
 const { remote } = require("electron");
 export default {
-  name: "Navigation",
+  name: "TabControls",
   methods: {
     closeApp: () => {
       remote.BrowserWindow.getFocusedWindow().close();
@@ -25,19 +25,21 @@ export default {
 
 <style lang="scss" scoped>
 #window-drag {
+  z-index: 100;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 20px;
+  height: 22px;
   background-color: rgba(0, 0, 0, 0.1);
   -webkit-app-region: drag;
 }
-nav {
+#controls {
+  z-index: 100;
   position: absolute;
   right: 0;
-  top: 0;
-  padding: 6px 24px 0 0;
+  top: 12px;
+  padding: 0 24px 0 0;
   width: 100%;
   z-index: 100;
   margin-left: auto;
@@ -46,7 +48,7 @@ nav {
   align-items: center;
   width: 80px;
 }
-.navBtn {
+.control {
   cursor: pointer;
   font-size: 36px;
   user-select: none;
