@@ -1,6 +1,6 @@
 <template>
   <div class="tc v-flex">
-    <LeftTopControl text="Exit" @click="exit" />
+    <ExitControl />
     <div>
       <BankLogo />
       <p>Choose operation below</p>
@@ -29,20 +29,16 @@
 </template>
 
 <script>
-import LeftTopControl from "@/components/LeftTopControl.vue";
+import ExitControl from "@/components/ExitControl.vue";
 import BankLogo from "@/components/BankLogo.vue";
 
 export default {
   name: "MainMenu",
   components: {
-    LeftTopControl,
+    ExitControl,
     BankLogo
   },
   methods: {
-    exit() {
-      this.$store.commit("reset");
-      this.$router.push("/");
-    },
     redirectTo(route) {
       this.$router.push(route);
     }

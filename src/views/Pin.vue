@@ -1,6 +1,6 @@
 <template>
   <div class="v-flex tc">
-    <LeftTopControl text="Go back" @click="goHome" />
+    <ExitControl />
     <div>
       <p class="enter-pin-msg">
         Enter your PIN
@@ -18,7 +18,7 @@
 
 <script>
 import Keypads from "@/components/Keypads";
-import LeftTopControl from "@/components/LeftTopControl";
+import ExitControl from "@/components/ExitControl";
 import LoadingDrawer from "@/components/LoadingDrawer";
 import axios from "axios";
 
@@ -28,7 +28,7 @@ export default {
   name: "Pin",
   components: {
     Keypads,
-    LeftTopControl,
+    ExitControl,
     LoadingDrawer
   },
   data() {
@@ -48,10 +48,6 @@ export default {
         this.pinState += action;
       }
     },
-    goHome() {
-      this.$store.commit("reset");
-      this.$router.push("/");
-    },
     async verifyCard() {
       if (this.pinState.length === 4) {
         this.isRequesting = true;
@@ -61,13 +57,18 @@ export default {
             pin: this.pinState
           })
           .then(resp => {
-            this.isRequesting = false;
             if (resp.data.token) {
               this.$store.commit("setToken", resp.data.token);
               this.$router.push("/mainmenu");
             } else {
               this.error = resp.data.error;
             }
+          })
+          .catch(() => {
+            this.error = "Server error occured. Try again later";
+          })
+          .finally(() => {
+            this.isRequesting = false;
           });
       }
     }

@@ -5,6 +5,7 @@ import Home from "../views/Home.vue";
 import MainMenu from "../views/MainMenu.vue";
 import Pin from "../views/Pin.vue";
 import CardChooser from "../views/CardChooser.vue";
+import CheckBalance from "../views/CheckBalance.vue";
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,11 @@ const routes = [
     path: "/mainmenu",
     name: "Main menu",
     component: MainMenu
+  },
+  {
+    path: "/checkbalance",
+    name: "CheckBalance",
+    component: CheckBalance
   }
 ];
 
