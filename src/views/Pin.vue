@@ -62,11 +62,13 @@ export default {
               this.$store.commit("setToken", token);
               this.$router.push("/mainmenu");
             } else {
-              this.error = resp.data.error;
+              this.error = resp.data.error || "An error occured.";
             }
           })
           .catch(err => {
-            this.error = err;
+            this.error = `${err.response.data.error || "An error occured"}. (${
+              err.response.status
+            })`;
           })
           .finally(() => {
             this.isRequesting = false;

@@ -13,34 +13,34 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
   },
   {
     path: "/pin",
     name: "Pin",
-    component: Pin
+    component: Pin,
   },
   {
     path: "/cardchooser",
     name: "Card chooser",
-    component: CardChooser
+    component: CardChooser,
   },
   {
     path: "/mainmenu",
     name: "Main menu",
-    component: MainMenu
+    component: MainMenu,
   },
   {
     path: "/checkbalance",
     name: "CheckBalance",
-    component: CheckBalance
-  }
+    component: CheckBalance,
+  },
 ];
 
 const router = new VueRouter({
   // mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;
