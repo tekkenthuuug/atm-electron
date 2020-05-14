@@ -24,6 +24,12 @@
       >
         Deposit
       </div>
+      <div
+        class="operation-button grid-full-row cyan-glow-onhover"
+        @click="redirectTo('/history')"
+      >
+        View history
+      </div>
     </div>
   </div>
 </template>
@@ -55,6 +61,9 @@ export default {
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 1rem;
   align-items: center;
+}
+.grid-full-row {
+  grid-column: 1 / 4;
 }
 .operation-button {
   cursor: pointer;

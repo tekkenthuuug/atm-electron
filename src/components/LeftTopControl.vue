@@ -28,6 +28,7 @@ export default {
 @import "@/_shared-styles.scss";
 
 .left-top-control {
+  z-index: 100;
   cursor: pointer;
   position: absolute;
   top: 30px;

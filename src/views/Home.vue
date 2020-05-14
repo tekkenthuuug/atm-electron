@@ -44,7 +44,9 @@ export default {
   mounted() {
     ipcRenderer.on("set-card", (item, cardNo, cardHolder) => {
       this.$store.commit("setSessionCard", { cardNo, cardHolder });
-      this.$router.push("/pin").catch(err => console.log(err));
+      this.$router.push("/pin").catch(err => {
+        err;
+      });
     });
   }
 };

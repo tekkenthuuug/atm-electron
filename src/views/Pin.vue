@@ -52,20 +52,21 @@ export default {
       if (this.pinState.length === 4) {
         this.isRequesting = true;
         axios
-          .post(`${API_BASE_URL}/verifyCard`, {
+          .post(`${API_BASE_URL}/verifycard`, {
             cardNo: this.$store.state.cardNo,
             pin: this.pinState
           })
           .then(resp => {
             if (resp.data.token) {
-              this.$store.commit("setToken", resp.data.token);
+              const { token } = resp.data;
+              this.$store.commit("setToken", token);
               this.$router.push("/mainmenu");
             } else {
               this.error = resp.data.error;
             }
           })
-          .catch(() => {
-            this.error = "Server error occured. Try again later";
+          .catch(err => {
+            this.error = err;
           })
           .finally(() => {
             this.isRequesting = false;
