@@ -7,28 +7,12 @@
     </div>
     <div class="operation-grid">
       <div
+        v-for="operation in operations"
+        :key="operation.name"
         class="operation-button cyan-glow-onhover"
-        @click="redirectTo('/checkbalance')"
+        @click="redirectTo(operation.path)"
       >
-        Check balance
-      </div>
-      <div
-        class="operation-button cyan-glow-onhover"
-        @click="redirectTo('/withdraw')"
-      >
-        Withdraw
-      </div>
-      <div
-        class="operation-button cyan-glow-onhover"
-        @click="redirectTo('/deposit')"
-      >
-        Deposit
-      </div>
-      <div
-        class="operation-button grid-full-row cyan-glow-onhover"
-        @click="redirectTo('/history')"
-      >
-        View history
+        {{ operation.name }}
       </div>
     </div>
   </div>
@@ -37,6 +21,8 @@
 <script>
 import ExitControl from "@/components/ExitControl.vue";
 import BankLogo from "@/components/BankLogo.vue";
+import { MAIN_PAGE_OPERATIONS } from "@/constants.js";
+const operations = MAIN_PAGE_OPERATIONS;
 
 export default {
   name: "MainMenu",
@@ -48,6 +34,11 @@ export default {
     redirectTo(route) {
       this.$router.push(route);
     }
+  },
+  data() {
+    return {
+      operations
+    };
   }
 };
 </script>
@@ -61,9 +52,6 @@ export default {
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 1rem;
   align-items: center;
-}
-.grid-full-row {
-  grid-column: 1 / 4;
 }
 .operation-button {
   cursor: pointer;
