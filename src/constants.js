@@ -2,18 +2,18 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 
 export const API_BASE_URL = isDevelopment ? 'http://localhost:8000' : '';
 
-export const MAIN_PAGE_OPERATIONS = [
+export const MAIN_MENU_OPERATIONS = [
   {
     name: 'Check balance',
-    path: '/checkbalance',
+    path: '/mainmenu/checkbalance',
   },
   {
     name: 'Withdraw',
-    path: '/withdraw',
+    path: '/mainmenu/withdraw',
   },
   {
     name: 'Deposit',
-    path: '/deposit',
+    path: '/mainmenu/deposit',
   },
   {
     name: 'Transaction history',

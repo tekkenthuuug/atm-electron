@@ -40,7 +40,27 @@ button {
   width: 100%;
 }
 
+.h-flex {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.h100 {
+  height: 100%;
+}
+
+.w100 {
+  width: 100%;
+}
+
 .cyan-glow-onhover:hover {
   background-color: rgba(cyan, 0.2);
   box-shadow: 0 0 18px rgba(cyan, 0.1);
+}
+
+.error {
+  color: rgb(255, 40, 40);
+  font-weight: 700;
+  height: 16px;
 }

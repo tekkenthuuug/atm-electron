@@ -1,18 +1,36 @@
 <template>
   <div class="keypad-grid">
     <div
-      v-for="keypad in [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 'C']"
-      :key="keypad"
-      @click="$emit('append-pin-num', keypad)"
+      v-for="value in values"
+      :key="value"
+      @click="$emit('append-num', value)"
+      :style="value === values[values.length - 1] && findColumns()"
     >
-      {{ keypad }}
+      {{ value }}
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Keypads"
+  name: "Keypads",
+  props: {
+    values: {
+      type: Array,
+      default: () => [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "C"]
+    }
+  },
+  methods: {
+    findColumns() {
+      const elementsInLastRow = this.values.length % 3;
+      const spaceInLastRow = 3 - elementsInLastRow;
+      if (spaceInLastRow === 3) {
+        return undefined;
+      } else {
+        return `grid-column: ${elementsInLastRow} / 4;`;
+      }
+    }
+  }
 };
 </script>
 
@@ -34,10 +52,6 @@ export default {
     &:active {
       background-color: rgba(0, 255, 255, 0.2);
     }
-  }
-  div:last-child {
-    grid-column-start: 2;
-    grid-column-end: 4;
   }
 }
 </style>

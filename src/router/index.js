@@ -1,39 +1,45 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-import Home from "../views/Home.vue";
-import MainMenu from "../views/MainMenu.vue";
-import Pin from "../views/Pin.vue";
-import CardChooser from "../views/CardChooser.vue";
-import CheckBalance from "../views/CheckBalance.vue";
+import Home from '../views/Home.vue';
+import MainMenu from '../views/MainMenu.vue';
+import Pin from '../views/Pin.vue';
+import CardChooser from '../views/CardChooser.vue';
+import CheckBalance from '../views/CheckBalance.vue';
+import Withdraw from '../views/Withdraw.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
-    name: "Home",
+    path: '/',
+    name: 'Home',
     component: Home,
   },
   {
-    path: "/pin",
-    name: "Pin",
+    path: '/pin',
+    name: 'Pin',
     component: Pin,
   },
   {
-    path: "/cardchooser",
-    name: "Card chooser",
+    path: '/cardchooser',
+    name: 'Card chooser',
     component: CardChooser,
   },
   {
-    path: "/mainmenu",
-    name: "Main menu",
+    path: '/mainmenu',
+    name: 'Main menu',
     component: MainMenu,
   },
   {
-    path: "/checkbalance",
-    name: "CheckBalance",
+    path: '/mainmenu/checkbalance',
+    name: 'Check Balance',
     component: CheckBalance,
+  },
+  {
+    path: '/mainmenu/withdraw',
+    name: 'Withdraw',
+    component: Withdraw,
   },
 ];
 

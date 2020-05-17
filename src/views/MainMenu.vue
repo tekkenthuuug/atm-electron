@@ -21,8 +21,8 @@
 <script>
 import ExitControl from "@/components/ExitControl.vue";
 import BankLogo from "@/components/BankLogo.vue";
-import { MAIN_PAGE_OPERATIONS } from "@/constants.js";
-const operations = MAIN_PAGE_OPERATIONS;
+import { MAIN_MENU_OPERATIONS } from "@/constants.js";
+const operations = MAIN_MENU_OPERATIONS;
 
 export default {
   name: "MainMenu",

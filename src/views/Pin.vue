@@ -8,9 +8,9 @@
       <p class="pin-input">
         {{ pinState.replace(/[0-9]/g, "*") }}
       </p>
-      <p class="pin-error">{{ error }}</p>
+      <p class="error">{{ error }}</p>
     </div>
-    <Keypads v-on:append-pin-num="appendPinNum" />
+    <Keypads v-on:append-num="appendPinNum" />
     <button class="submit-btn" @click="verifyCard">Submit</button>
     <LoadingDrawer v-if="isRequesting" />
   </div>
@@ -85,11 +85,6 @@ export default {
     font-size: 40px;
     margin-top: 12px;
     height: 42px;
-  }
-  &-error {
-    color: rgb(255, 40, 40);
-    font-weight: 700;
-    height: 8px;
   }
 }
 .enter-pin-msg {
