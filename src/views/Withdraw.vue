@@ -3,29 +3,31 @@
     <GoBackControl />
     <div>
       <h1>Input amount of money you want to withdraw</h1>
-      <h1 class="amount">{{ Number(sum).toLocaleString() }}$</h1>
+      <h1 class="amount">{{ Number(amount).toLocaleString() }}$</h1>
       <p v-if="Boolean(error)" class="error">{{ error }}</p>
     </div>
     <div class="value-selectors">
       <QuickSelect
         v-if="quickSelect"
         v-on:switch-to-other="toggleMode"
-        v-on:set="setSumNum"
+        v-on:set="setAmount"
       />
       <div v-else>
-        <Keypads v-on:append-num="appendSumNum" />
+        <Keypads v-on:append-num="changeAmount" />
         <button @click="toggleMode" class="popular-amounts">
           See popular amounts
         </button>
       </div>
     </div>
-    <button class="withdraw-btn" @click="handleWithdraw">
+    <button class="withdraw-btn confirm-btn" @click="handleWithdraw">
       Withdraw
     </button>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import { API_BASE_URL } from "@/constants.js";
 import Keypads from "@/components/Keypads";
 import GoBackControl from "@/components/GoBackControl";
 import QuickSelect from "@/components/QuickSelect";
@@ -39,32 +41,31 @@ export default {
   },
   data() {
     return {
-      sum: "0",
+      amount: "0",
       error: " ",
-      quickSelect: true,
-      sumValid: false
+      quickSelect: true
     };
   },
   methods: {
-    appendSumNum(action) {
+    changeAmount(action) {
       if (action === "C") {
-        this.sum = "0";
+        this.amount = "0";
         return;
       }
-      if (this.sum === "0") {
-        this.sum = String(action);
+      if (this.amount === "0") {
+        this.amount = String(action);
       } else {
-        this.sum += action;
+        this.amount += action;
       }
     },
-    setSumNum(sum) {
-      this.sum = String(sum);
+    setAmount(sum) {
+      this.amount = String(sum);
     },
     toggleMode() {
       this.quickSelect = !this.quickSelect;
     },
     validateSum() {
-      const sum = Number(this.sum);
+      const sum = Number(this.amount);
       if (sum % 5 === 0 && sum !== 0) {
         return true;
       }
@@ -76,7 +77,23 @@ export default {
         return;
       } else {
         this.error = " ";
-        // @todo handle send request
+        const Authorization = "Bearer " + this.$store.state.token;
+        axios
+          .put(
+            `${API_BASE_URL}/balance/withdraw`,
+            { amount: this.amount },
+            { headers: { Authorization } }
+          )
+          .then(resp => {
+            if (resp.data.error) {
+              this.error = resp.data.error || "Try again later.";
+            } else {
+              this.$router.push("/mainmenu/checkbalance");
+            }
+          })
+          .catch(err => {
+            this.error = err.response.data.error || "Try again later.";
+          });
       }
     }
   }
@@ -100,18 +117,6 @@ export default {
 .withdraw-btn {
   width: 200px;
   height: 52px;
-  $confirmBtn-color: rgba(200, 220, 80, 0.9);
-  background-color: $confirmBtn-color;
-  color: rgb(35, 35, 35);
-  border-radius: 12px;
-  font-size: 18px;
-  font-family: "Nunito", sans-serif;
-  text-transform: uppercase;
-  font-weight: 800;
-  &:disabled {
-    cursor: default;
-    background-color: rgba($confirmBtn-color, 0.7);
-  }
 }
 .value-selectors {
   min-height: 50%;

@@ -64,3 +64,18 @@ button {
   font-weight: 700;
   height: 16px;
 }
+
+.confirm-btn {
+  $confirmBtn-color: rgba(200, 220, 80, 0.9);
+  background-color: $confirmBtn-color;
+  color: rgb(35, 35, 35);
+  border-radius: 12px;
+  font-size: 18px;
+  font-family: "Nunito", sans-serif;
+  text-transform: uppercase;
+  font-weight: 800;
+  &:disabled {
+    cursor: default;
+    background-color: rgba($confirmBtn-color, 0.7);
+  }
+}

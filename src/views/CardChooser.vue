@@ -11,6 +11,7 @@
       <button id="cancelBtn" @click="closeCurrentWindow">Cancel</button>
       <button
         id="confirmBtn"
+        class="confirm-btn"
         :disabled="!Boolean(selectedCardNo.length)"
         @click="setSessionCard"
       >
@@ -95,12 +96,6 @@ export default {
   color: rgb(240, 240, 240);
 }
 #confirmBtn {
-  $confirmBtn-color: rgba(200, 220, 80, 0.9);
-  background-color: $confirmBtn-color;
-  color: rgb(35, 35, 35);
-  &:disabled {
-    cursor: default;
-    background-color: rgba($confirmBtn-color, 0.7);
-  }
+  border-radius: 0px;
 }
 </style>
