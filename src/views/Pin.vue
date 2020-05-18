@@ -52,7 +52,7 @@ export default {
       if (this.pinState.length === 4) {
         this.isRequesting = true;
         axios
-          .post(`${API_BASE_URL}/verifycard`, {
+          .post(`${API_BASE_URL}/creditcard/verify`, {
             cardNo: this.$store.state.cardNo,
             pin: this.pinState
           })

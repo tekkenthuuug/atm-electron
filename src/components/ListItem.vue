@@ -1,11 +1,11 @@
 <template>
   <div class="transaction-item cyan-glow">
-    <h2>{{ 0 > value ? "Withdraw" : "Deposit" }}</h2>
+    <h2>{{ title }}</h2>
     <div class="transaction-item__details">
       <p class="transaction-item__date">
         {{ new Date(date).toLocaleString("en-GB") }}
       </p>
-      <p :class="getValueClass(value)">{{ value }}$</p>
+      <p v-if="Boolean(value)" :class="getValueClass(value)">{{ value }}$</p>
     </div>
   </div>
 </template>
@@ -14,6 +14,9 @@
 export default {
   name: "TransactionListItem",
   props: {
+    title: {
+      type: String
+    },
     value: {
       type: Number
     },

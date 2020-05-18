@@ -8,6 +8,7 @@ import CardChooser from '../views/CardChooser.vue';
 import CheckBalance from '../views/CheckBalance.vue';
 import Withdraw from '../views/Withdraw.vue';
 import Transactions from '../views/Transactions.vue';
+import CreditCardHistory from '../views/CreditCardHistory.vue';
 
 Vue.use(VueRouter);
 
@@ -46,6 +47,11 @@ const routes = [
     path: '/transaction/history',
     name: 'Transactions history',
     component: Transactions,
+  },
+  {
+    path: '/creditcard/history',
+    name: 'Credit card history',
+    component: CreditCardHistory,
   },
 ];
 
