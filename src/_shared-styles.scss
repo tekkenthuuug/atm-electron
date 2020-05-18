@@ -59,6 +59,19 @@ button {
   box-shadow: 0 0 18px rgba(cyan, 0.1);
 }
 
+.cyan-glow {
+  background-color: rgba(cyan, 0.2);
+  box-shadow: 0 0 18px rgba(cyan, 0.1);
+}
+
+.red {
+  color: rgb(230, 70, 70);
+}
+
+.green {
+  color: rgb(0, 200, 20);
+}
+
 .error {
   color: rgb(255, 40, 40);
   font-weight: 700;

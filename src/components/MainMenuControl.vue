@@ -1,18 +1,18 @@
 <template>
-  <LeftTopControl text="Go back" @click="goBack" />
+  <LeftTopControl text="Main menu" @click="goMainMenu" />
 </template>
 
 <script>
 import LeftTopControl from "@/components/LeftTopControl.vue";
 
 export default {
-  name: "GoBackControl",
+  name: "MainMenuControl",
   components: {
     LeftTopControl
   },
   methods: {
-    goBack() {
-      this.$router.go(-1);
+    goMainMenu() {
+      this.$router.push("/mainmenu");
     }
   }
 };

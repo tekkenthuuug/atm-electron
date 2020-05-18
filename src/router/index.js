@@ -7,6 +7,7 @@ import Pin from '../views/Pin.vue';
 import CardChooser from '../views/CardChooser.vue';
 import CheckBalance from '../views/CheckBalance.vue';
 import Withdraw from '../views/Withdraw.vue';
+import Transactions from '../views/Transactions.vue';
 
 Vue.use(VueRouter);
 
@@ -40,6 +41,11 @@ const routes = [
     path: '/mainmenu/withdraw',
     name: 'Withdraw',
     component: Withdraw,
+  },
+  {
+    path: '/transaction/history',
+    name: 'Transactions history',
+    component: Transactions,
   },
 ];
 

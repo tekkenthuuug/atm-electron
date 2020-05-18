@@ -1,6 +1,6 @@
 <template>
   <div class="h100 v-flex tc">
-    <GoBackControl />
+    <MainMenuControl />
     <div>
       <h1>Input amount of money you want to withdraw</h1>
       <h1 class="amount">{{ Number(amount).toLocaleString() }}$</h1>
@@ -29,14 +29,14 @@
 import axios from "axios";
 import { API_BASE_URL } from "@/constants.js";
 import Keypads from "@/components/Keypads";
-import GoBackControl from "@/components/GoBackControl";
+import MainMenuControl from "@/components/MainMenuControl";
 import QuickSelect from "@/components/QuickSelect";
 
 export default {
   name: "Withdraw",
   components: {
     Keypads,
-    GoBackControl,
+    MainMenuControl,
     QuickSelect
   },
   data() {

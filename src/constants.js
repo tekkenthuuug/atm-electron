@@ -17,7 +17,7 @@ export const MAIN_MENU_OPERATIONS = [
   },
   {
     name: 'Transaction history',
-    path: '/transaction/hisotory',
+    path: '/transaction/history',
   },
   {
     name: 'Credit card history',
