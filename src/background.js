@@ -8,7 +8,7 @@ import {
 const isDevelopment = process.env.NODE_ENV !== "production";
 
 let win;
-let cardChooserWin;
+let subWin;
 
 protocol.registerSchemesAsPrivileged([
   { scheme: "app", privileges: { secure: true, standard: true } }
@@ -17,12 +17,9 @@ protocol.registerSchemesAsPrivileged([
 function createWindow() {
   win = new BrowserWindow({
     width: 920,
-    maxWidth: 920,
-    minWidth: 920,
-    maxHeight: 690,
-    minHeight: 690,
     height: 690,
     frame: false,
+    resizable: false,
     maximizable: false,
     autoHideMenuBar: true,
     webPreferences: {
@@ -45,16 +42,16 @@ function createWindow() {
   });
 }
 
-function createCardChooserWindow() {
+function createSubWin(path, size) {
   // If window already opened - focus on it and terminate function
-  if (cardChooserWin) {
-    cardChooserWin.focus();
+  if (subWin) {
+    subWin.focus();
     return;
   }
 
-  cardChooserWin = new BrowserWindow({
-    width: 400,
-    height: 760,
+  subWin = new BrowserWindow({
+    width: size.width,
+    height: size.height,
     frame: false,
     maximizable: false,
     autoHideMenuBar: true,
@@ -64,11 +61,11 @@ function createCardChooserWindow() {
     }
   });
 
-  cardChooserWin.loadURL(process.env.WEBPACK_DEV_SERVER_URL + "/#/cardchooser");
+  subWin.loadURL(process.env.WEBPACK_DEV_SERVER_URL + `/#${path}`);
 
   // Garabge collection
-  cardChooserWin.on("close", () => {
-    cardChooserWin = null;
+  subWin.on("close", () => {
+    subWin = null;
   });
 }
 
@@ -115,10 +112,11 @@ if (isDevelopment) {
 }
 
 ipcMain.on("open-card-chooser", () => {
-  createCardChooserWindow();
+  createSubWin("/cardchooser", { width: 400, height: 760 });
 });
 
 ipcMain.on("card-was-choosen", (item, cardNo, cardHolder) => {
-  cardChooserWin.close();
+  subWin.close();
+  win.focus();
   win.webContents.send("set-card", cardNo, cardHolder);
 });
