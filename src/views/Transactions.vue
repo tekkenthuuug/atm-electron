@@ -75,7 +75,7 @@ export default {
 
 <style lang="scss" scoped>
 .transactions {
-  max-height: 465px;
+  max-height: 470px;
   overflow-x: auto;
 }
 </style>

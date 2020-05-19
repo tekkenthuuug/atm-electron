@@ -2,7 +2,7 @@
   <div class="h100 v-flex tc">
     <MainMenuControl />
     <div>
-      <h1>Input amount of money you want to withdraw</h1>
+      <h1>Input amount of money you want to deposit</h1>
       <h1 class="amount">{{ Number(amount).toLocaleString() }}$</h1>
       <p v-if="Boolean(error)" class="error">{{ error }}</p>
     </div>
@@ -19,8 +19,8 @@
         </button>
       </div>
     </div>
-    <button class="withdraw-btn confirm-btn" @click="handleWithdraw">
-      Withdraw
+    <button class="withdraw-btn confirm-btn" @click="handleDeposit">
+      Deposit
     </button>
   </div>
 </template>
@@ -71,7 +71,7 @@ export default {
       }
       return false;
     },
-    handleWithdraw() {
+    handleDeposit() {
       if (!this.validateSum()) {
         this.error = "Amount must be divisible by 5";
         return;
@@ -80,7 +80,7 @@ export default {
         const Authorization = "Bearer " + this.$store.state.token;
         axios
           .put(
-            `${API_BASE_URL}/balance/withdraw`,
+            `${API_BASE_URL}/balance/deposit`,
             { amount: this.amount },
             { headers: { Authorization } }
           )

@@ -3,6 +3,10 @@
     <ExitControl />
     <div>
       <BankLogo />
+      <p>
+        Hello,
+        <b>{{ this.$store.state.cardHolder }}!</b>
+      </p>
       <p>Choose operation below</p>
     </div>
     <div class="operation-grid">
@@ -44,8 +48,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/_shared-styles.scss";
-
 .operation-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

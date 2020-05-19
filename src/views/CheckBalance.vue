@@ -4,7 +4,7 @@
     <div v-if="Boolean(balance)" class="v-flex tc">
       <div class="balance-info">
         <h2>Your current account balance:</h2>
-        <h1>{{ balance }}$</h1>
+        <h1>{{ Number(balance).toLocaleString() }}$</h1>
       </div>
     </div>
     <LoadingDrawer v-else />

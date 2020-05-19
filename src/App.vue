@@ -16,6 +16,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "./_shared-styles.scss";
 #app {
   position: relative;
   color: rgb(240, 240, 240);

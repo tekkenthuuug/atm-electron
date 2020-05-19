@@ -5,7 +5,9 @@
       <p class="transaction-item__date">
         {{ new Date(date).toLocaleString("en-GB") }}
       </p>
-      <p v-if="Boolean(value)" :class="getValueClass(value)">{{ value }}$</p>
+      <p v-if="Boolean(value)" :class="getValueClass(value)">
+        {{ value.toLocaleString() }}$
+      </p>
     </div>
   </div>
 </template>
