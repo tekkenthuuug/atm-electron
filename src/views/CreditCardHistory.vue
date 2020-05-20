@@ -1,7 +1,7 @@
 <template>
   <div class="v-flex">
     <MainMenuControl />
-    <div class="history" v-if="!isRequesting && Boolean(history.length)">
+    <div class="history" v-if="Boolean(history.length)">
       <ListItem
         v-for="element in formatedHistory"
         :key="element.index"
@@ -9,7 +9,7 @@
         :date="element.event_date"
       />
     </div>
-    <h2 v-else>There is not transactions yet!</h2>
+    <h2 v-else-if="!isRequesting">There is not transactions yet!</h2>
     <LoadingDrawer v-if="isRequesting" />
   </div>
 </template>

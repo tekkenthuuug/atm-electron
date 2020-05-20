@@ -1,6 +1,6 @@
 "use strict";
 
-import { app, protocol, BrowserWindow, ipcMain, ipcRenderer } from "electron";
+import { app, protocol, BrowserWindow, ipcMain } from "electron";
 import {
   createProtocol,
   installVueDevtools
@@ -61,8 +61,13 @@ function createSubWin(path, size) {
     }
   });
 
-  subWin.loadURL(process.env.WEBPACK_DEV_SERVER_URL + `/#${path}`);
-
+  if (process.env.WEBPACK_DEV_SERVER_URL) {
+    // Load the url of the dev server if in development mode
+    subWin.loadURL(process.env.WEBPACK_DEV_SERVER_URL + `/#${path}`);
+  } else {
+    createProtocol("app");
+    subWin.loadURL(`app://./index.html#${path}`);
+  }
   // Garabge collection
   subWin.on("close", () => {
     subWin = null;

@@ -1,10 +1,7 @@
 <template>
   <div class="v-flex">
     <MainMenuControl />
-    <div
-      class="transactions"
-      v-if="!isRequesting && Boolean(transactions.length)"
-    >
+    <div class="transactions" v-if="Boolean(transactions.length)">
       <ListItem
         v-for="transaction in formatedTransactions"
         :key="transaction.transactionID"
@@ -13,7 +10,7 @@
         :title="transaction.value < 0 ? 'Withdraw' : 'Deposit'"
       />
     </div>
-    <h2 v-else>There is no transactions yet!</h2>
+    <h2 v-else-if="!isRequesting">There is no transactions yet!</h2>
     <LoadingDrawer v-if="isRequesting" />
   </div>
 </template>
