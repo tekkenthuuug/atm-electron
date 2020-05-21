@@ -43,7 +43,9 @@ export default {
   },
   mounted() {
     ipcRenderer.on("set-card", (item, cardNo, cardHolder) => {
+      // Set session card in Vuex store
       this.$store.commit("setSessionCard", { cardNo, cardHolder });
+      // Redirect to main page
       this.$router.push("/pin").catch(err => {
         err;
       });

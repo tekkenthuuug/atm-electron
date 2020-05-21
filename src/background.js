@@ -121,7 +121,7 @@ ipcMain.on("open-card-chooser", () => {
 });
 
 ipcMain.on("card-was-choosen", (item, cardNo, cardHolder) => {
-  subWin.close();
-  win.focus();
-  win.webContents.send("set-card", cardNo, cardHolder);
+  subWin.close(); // close subWindow
+  win.focus(); // change focus to main window
+  win.webContents.send("set-card", cardNo, cardHolder); // send event to main window
 });
